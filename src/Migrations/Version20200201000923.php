@@ -22,8 +22,7 @@ final class Version20200201000923 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('CREATE TABLE filesystem (id INT AUTO_INCREMENT NOT NULL, parent_id_id INT DEFAULT NULL, title VARCHAR(255) NOT NULL, UNIQUE INDEX UNIQ_E9F64D20B3750AF4 (parent_id_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('ALTER TABLE filesystem ADD CONSTRAINT FK_E9F64D20B3750AF4 FOREIGN KEY (parent_id_id) REFERENCES filesystem (id) ON UPDATE CASCADE ON DELETE RESTRICT');
+        $this->addSql('CREATE TABLE filesystem (id int(10) unsigned NOT NULL AUTO_INCREMENT,title varchar(255) NOT NULL,parent_id int(10) unsigned DEFAULT NULL,PRIMARY KEY (id),FOREIGN KEY (parent_id) REFERENCES filesystem (id)ON DELETE CASCADE ON UPDATE CASCADE);');
     }
 
     public function down(Schema $schema) : void
@@ -31,7 +30,6 @@ final class Version20200201000923 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE filesystem DROP FOREIGN KEY FK_E9F64D20B3750AF4');
         $this->addSql('DROP TABLE filesystem');
     }
 }
