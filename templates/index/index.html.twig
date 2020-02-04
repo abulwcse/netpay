@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}NetPay Exercise{% endblock %}
+
+{% block main_content %}
+<div class="main-content">
+    <h1>Index</h1>
+    <ul>
+        <li><a href="{{ path('file_search') }}">File search</a> </li>
+        <li><a href="{{ path('add_contact') }}">Contact Management</a> </li>
+    </ul>
+</div>
+{% endblock %}

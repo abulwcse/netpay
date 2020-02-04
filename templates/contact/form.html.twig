@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contacts{% endblock %}
+
+{% block main_content %}
+    <input id="fallback-data" type="hidden" value="{{ data|default('{}') }}" />
+    <div id="react-root" class="main-content">
+    </div>
+{% endblock %}

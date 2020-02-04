@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Search{% endblock %}
+
+{% block main_content %}
+<div class="main-content">
+
+    <form method="post" class="form-inline md-form mr-auto mb-4">
+        <input type="hidden" value="{{ csrf_token('search_form') }}" name="__token">
+        <input name="q" class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" value="{{ app.request.get('q') }}">
+        <button class="btn btn-primary btn-rounded btn-sm my-0" type="submit">Search</button>
+    </form>
+    <hr/>
+    {% if app.request.method == 'POST' %}
+    <h3>Result:</h3>
+    <ul>
+        {% if not results is empty %}
+            {% for result in results %}
+                <li>{{ result.path }}</li>
+            {% endfor %}
+        {% else %}
+            <l1>No result found.</l1>
+        {% endif %}
+    </ul>
+    {% endif %}
+</div>
+{% endblock %}
