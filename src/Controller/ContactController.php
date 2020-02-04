@@ -55,6 +55,10 @@ class ContactController extends AbstractController
             $contacts = json_decode($data, true);
             $processed = [];
             $hasError = false;
+            if (empty($contacts)) {
+                $this->addFlash('error', "No contacts please add one before hitting save.");
+                return $this->redirectToRoute('add_contact');
+            }
             foreach ($contacts as $key => $contact) {
                 $contact['errors'] = [];
                 if (!$this->validator->isAlphabetic($contact['name']) ) {
