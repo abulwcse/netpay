@@ -19,7 +19,7 @@ class CommonValidator
 
     public function isEmail(string $text)
     {
-        return filter_var($text, FILTER_VALIDATE_EMAIL);
+        return filter_var($text, FILTER_VALIDATE_EMAIL) !== false;
 
     }
 
