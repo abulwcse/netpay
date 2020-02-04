@@ -17,7 +17,15 @@
             {% endif %}
 
             <div class="col-sm-6">
-                <div class="card-header">{{ contact.name }}</div>
+
+                <div class="card-header inline">
+                    {{ contact.name }}
+                    <button class='btn btn-danger btn-sm float-right' type="submit" form="{{ contact.id }}">Delete</button>
+                    <form id="{{ contact.id }}" action="{{ path('delete_contact') }}" method="post">
+                        <input type="hidden" name="__token" value="{{ csrf_token('deleteform') }}"/>
+                        <input type="hidden" name="id" value="{{ contact.id }}"/>
+                    </form>
+                </div>
                 <div class="card-body">
                     <h5 class="card-title">{{ contact.email }}</h5>
                     <p class="card-text">{{ contact.phone }}</p>

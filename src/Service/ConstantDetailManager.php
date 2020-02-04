@@ -74,11 +74,23 @@ class ConstantDetailManager
     }
 
     /**
+     * @param string $id
+     * @return Contact|null
+     */
+    public function getById(string $id) : ?Contact
+    {
+        if (isset($this->contacts[$id])) {
+            return $this->contacts[$id];
+        }
+        return  null;
+    }
+
+    /**
      * @param Contact $contact
      */
     public function add(Contact $contact)
     {
-        $uniqueId = md5($contact->getEmail(). time());
+        $uniqueId = md5($contact->getEmail(). time() .rand());
         $contact->setId($uniqueId);
         $this->contacts[$uniqueId] = $contact;
     }

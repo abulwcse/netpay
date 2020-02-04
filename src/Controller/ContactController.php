@@ -37,11 +37,6 @@ class ContactController extends AbstractController
      */
     public function index()
     {
-       $contact = new Contact();
-       $contact->setName('Abul');
-       $contact->setEmail('abul.cse@gmail.com');
-       $contact->setPhone('07455289015');
-
        return $this->render('contact\index.html.twig', [
            'contacts' => $this->manager->getAllContacts()
        ]);
